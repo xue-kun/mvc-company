@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>emplist</servlet-name>
+        <servlet-class>com.xk.controller.ListEmpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>emplist</servlet-name>
+        <url-pattern>/emplist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deptlist</servlet-name>
+        <servlet-class>com.xk.controller.ListDeptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deptlist</servlet-name>
+        <url-pattern>/deptlist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addemp</servlet-name>
+        <servlet-class>com.xk.controller.AddEmpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addemp</servlet-name>
+        <url-pattern>/addemp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addempview</servlet-name>
+        <servlet-class>com.xk.controller.AddEmpServletView</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addempview</servlet-name>
+        <url-pattern>/addempview</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteemp</servlet-name>
+        <servlet-class>com.xk.controller.DeleteEmpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteemp</servlet-name>
+        <url-pattern>/deleteemp</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
