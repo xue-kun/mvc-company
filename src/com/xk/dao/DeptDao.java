@@ -46,7 +46,7 @@ public class DeptDao {
     /*删除dept*/
     public int deleteDept(int[] ints){
         int sum=0;
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement =null;
         String sql="delete from c_dept where dept_id=?";
         for (int i = 0; i < ints.length ; i++) {
             try {
@@ -56,6 +56,13 @@ public class DeptDao {
                 sum++;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
+            }finally {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
             }
         }
         return sum;
@@ -64,7 +71,7 @@ public class DeptDao {
     /*增加部门*/
     public int addDept(Dept dept){
         int sum=0;
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement=null;
         String sql="insert into c_dept(name,location) values(?,?)";
         try {
             preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
@@ -73,6 +80,13 @@ public class DeptDao {
             sum=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return sum;
 

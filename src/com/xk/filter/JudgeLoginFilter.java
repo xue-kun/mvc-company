@@ -21,7 +21,8 @@ public class JudgeLoginFilter implements Filter {
         String uri=request.getRequestURI();
         if (uri.endsWith("login") || uri.endsWith("register") || uri.endsWith(".jsp") ||
                 uri.endsWith("registerView") || uri.endsWith("iflogin") || uri.endsWith(".css")
-                || uri.endsWith(".js") || uri.endsWith("test") || uri.endsWith("checkRegister")){
+                || uri.endsWith(".js") || uri.endsWith("test") || uri.endsWith("checkRegister")
+                || uri.endsWith("selectcodeimg") || uri.endsWith("getSession")){
 
             filterChain.doFilter(servletRequest,servletResponse);
         }else {
@@ -49,12 +50,10 @@ public class JudgeLoginFilter implements Filter {
                         }
                     }
                     if (isLogin != true){
-                        System.out.println(1);
                         response.sendRedirect("login");
                     }
 
                 }else {
-                    System.out.println(2);
                     response.sendRedirect("login");
                 }
 

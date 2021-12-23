@@ -62,6 +62,13 @@ public class EmpDao {
             num=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return num;
     }
@@ -77,6 +84,13 @@ public class EmpDao {
             sum=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
 
         return sum;
@@ -98,6 +112,13 @@ public class EmpDao {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return sum;
 
@@ -106,8 +127,8 @@ public class EmpDao {
     /*查询单个*/
     public Emp selectEmp(Integer emp_id){
         Emp emp=new Emp();
-        PreparedStatement preparedStatement;
-        ResultSet resultSet;
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
         String sql="select e.*,d.name dept_name from c_emp e,c_dept d where e.dept_id=d.dept_id and e.emp_id=?";
         try {
             preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
@@ -130,6 +151,14 @@ public class EmpDao {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
             return emp;
     }
@@ -137,7 +166,7 @@ public class EmpDao {
     /*修改Emp*/
     public int updateEmp(Emp emp){
         int sum=0;
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement=null;
         String sql="update c_emp set name=?,phone=?,sex=?,salary=?,dept_id=? where emp_id=?";
         try {
             preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
@@ -150,6 +179,13 @@ public class EmpDao {
             sum=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return sum;
     }

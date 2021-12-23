@@ -18,8 +18,6 @@ public class RegisterServlet extends HttpServlet {
         String username=req.getParameter("username");
         String password=req.getParameter("password");
         if ( !"".equals(username) && !"".equals(password)){
-            System.out.println(username);
-            System.out.println(password);
             User user=new User(username,password);
             new UserDao().register(user);
             resp.sendRedirect("login");

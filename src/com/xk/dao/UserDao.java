@@ -12,9 +12,9 @@ public class UserDao {
     /*登陆*/
     public User Login(String name){
         User NewUser=null;
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement=null;
         String sql="select * from c_user where username=?";
-        ResultSet resultSet;
+        ResultSet resultSet=null;
         try {
             preparedStatement= DataSourceFactory.getConnection().prepareStatement(sql);
             preparedStatement.setString(1,name);
@@ -25,6 +25,14 @@ public class UserDao {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return NewUser;
     }
@@ -32,7 +40,7 @@ public class UserDao {
 
     /*注册*/
     public int register(User user){
-        PreparedStatement preparedStatement;
+        PreparedStatement preparedStatement=null;
         int sum=0;
         String sql="insert into c_user(username,password) values(?,?)";
         try {
@@ -42,6 +50,13 @@ public class UserDao {
             sum=preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         return sum;
 
