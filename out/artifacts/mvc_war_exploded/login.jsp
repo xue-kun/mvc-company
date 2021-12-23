@@ -9,32 +9,13 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <script>
-
-        $(".sendLogin").click(function () {
-
-            <c:forEach items="${stateCode}" var="code">
-            var c=${code.code}
-            alert(c);
-            if ( c===1){
-                location.href="emplist";
-            }else {
-                alert(${code.message})
-            }
-            </c:forEach>
-        })
-
-
-    </script>
-
-
 
 </head>
 <body>
 <div class="container">
     <div class="row head"></div>
     <div class="row body">
-        <form class="form-horizontal" action="iflogin" method="get">
+        <form class="form-horizontal" action="iflogin" method="post">
             <div class="form-group">
                 <label for="username" class="col-sm-2 control-label">username</label>
                 <div class="col-sm-10">
@@ -52,6 +33,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-default sendLogin">登陆</button>
+                    <button type="button" class="btn btn-default" onclick="location.href='registerView'">注册</button>
                 </div>
             </div>
         </form>

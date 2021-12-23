@@ -9,25 +9,41 @@ import java.sql.SQLException;
 
 public class UserDao {
 
-    public User Login(User user){
-        User user1=new User();
+    /*登陆*/
+    public User Login(String name){
+        User NewUser=null;
         PreparedStatement preparedStatement;
-        String sql="select password from c_user where username=?";
+        String sql="select * from c_user where username=?";
         ResultSet resultSet;
         try {
             preparedStatement= DataSourceFactory.getConnection().prepareStatement(sql);
-            preparedStatement.setString(1,user.getUsername());
+            preparedStatement.setString(1,name);
             resultSet=preparedStatement.executeQuery();
             while (resultSet.next()){
-                String password=resultSet.getString("password");
-                user1.setUsername(user.getUsername());
-                user1.setPassword(password);
+                NewUser=new User(resultSet.getString("username"),resultSet.getString("password"));
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return NewUser;
+    }
 
-        return user1;
+
+    /*注册*/
+    public int register(User user){
+        PreparedStatement preparedStatement;
+        int sum=0;
+        String sql="insert into c_user(username,password) values(?,?)";
+        try {
+            preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1,user.getUsername());
+            preparedStatement.setString(2,user.getPassword());
+            sum=preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sum;
 
     }
 }

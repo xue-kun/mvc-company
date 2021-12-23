@@ -8,32 +8,29 @@
     <title>addEmp</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 <body>
 <div class="container">
     <div class="row head"></div>
     <div class="row body">
-        <form class="form-horizontal" action="iflogin" method="post">
+        <form class="form-horizontal" action="adddept" method="get">
             <div class="form-group">
-                <label for="username" class="col-sm-2 control-label">username</label>
+                <label for="name" class="col-sm-2 control-label">name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="username" placeholder="username" name="username">
+                    <input type="text" class="form-control" id="name" placeholder="name" name="name">
                 </div>
             </div>
             <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">password</label>
+                <label for="location" class="col-sm-2 control-label">location</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="password" name="password">
+                    <input type="text" class="form-control" id="location" placeholder="localhost" name="location">
                 </div>
             </div>
 
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default sendLogin">登陆</button>
-                    <button type="button" class="btn btn-default" onclick="location.href='registerView'">注册</button>
+                    <button type="submit" class="btn btn-default">提交</button>
                 </div>
             </div>
         </form>

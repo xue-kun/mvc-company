@@ -7,6 +7,30 @@
     <title>deptlist</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $(".selectAll").click(function () {
+                $(".selectOne").prop("checked",$(".selectAll").prop("checked"))
+            })
+
+            $(".deletedept").click(function () {
+                var dept_ids=new Array();
+                $(".selectOne").each(function (index,value) {
+                    if (value.checked){
+                        dept_ids.push(value.getAttribute("dept_id"))
+                    }
+                })
+                location.href="deletedept?dept_ids=" + dept_ids
+            })
+
+        })
+
+
+    </script>
 </head>
 <body>
 <div class="container">
@@ -15,7 +39,7 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th><input type="checkbox"></th>
+                <th><input type="checkbox" class="selectAll"></th>
                 <th>#</th>
                 <th>部门名称</th>
                 <th>工作地点</th>
@@ -24,7 +48,7 @@
             <tbody>
             <c:forEach var="dept" items="${deptlist}" varStatus="index">
                 <tr>
-                    <td><input type="checkbox"></td>
+                    <td><input type="checkbox" class="selectOne" dept_id="${dept.dept_id}"></td>
                     <td>${index.index+1}</td>
                     <td>${dept.name}</td>
                     <td>${dept.location}</td>
@@ -37,8 +61,8 @@
     </div>
     <div class="row">
         <div class="col-sm-9">
-            <button type="button" class="btn btn-primary">增加</button>
-            <button type="button" class="btn btn-danger">删除</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='adddeptview'">增加</button>
+            <button type="button" class="btn btn-danger deletedept">删除</button>
         </div>
         <div class="col-sm-3">
             <nav aria-label="Page navigation">
@@ -65,7 +89,6 @@
     <div class="row foot"></div>
 </div>
 
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+
 </body>
 </html>

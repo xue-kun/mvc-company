@@ -42,4 +42,39 @@ public class DeptDao {
 
         return deptList;
     }
+
+    /*删除dept*/
+    public int deleteDept(int[] ints){
+        int sum=0;
+        PreparedStatement preparedStatement;
+        String sql="delete from c_dept where dept_id=?";
+        for (int i = 0; i < ints.length ; i++) {
+            try {
+                preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
+                preparedStatement.setInt(1,ints[i]);
+                preparedStatement.executeUpdate();
+                sum++;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return sum;
+    }
+
+    /*增加部门*/
+    public int addDept(Dept dept){
+        int sum=0;
+        PreparedStatement preparedStatement;
+        String sql="insert into c_dept(name,location) values(?,?)";
+        try {
+            preparedStatement=DataSourceFactory.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1,dept.getName());
+            preparedStatement.setString(2,dept.getLocation());
+            sum=preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return sum;
+
+    }
 }

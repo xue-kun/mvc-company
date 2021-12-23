@@ -9,6 +9,11 @@ public class Dept {
     public Dept() {
     }
 
+    public Dept(String name, String location) {
+        this.name = name;
+        this.location = location;
+    }
+
     public Dept(Integer dept_id, String name, String location) {
         this.dept_id = dept_id;
         this.name = name;

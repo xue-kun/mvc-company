@@ -3,6 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <!--设置服务器启动后打开的欢迎页-->
+    <welcome-file-list>
+        <welcome-file>select</welcome-file>
+    </welcome-file-list>
+    <!--配置servlet与地址的映射-->
     <servlet>
         <servlet-name>emplist</servlet-name>
         <servlet-class>com.xk.controller.ListEmpServlet</servlet-class>
@@ -91,6 +97,24 @@
     <servlet-mapping>
         <servlet-name>iflogin</servlet-name>
         <url-pattern>/iflogin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registerView</servlet-name>
+        <servlet-class>com.xk.controller.RegisterServletView</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registerView</servlet-name>
+        <url-pattern>/registerView</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>com.xk.controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     
 </web-app>
